@@ -1,7 +1,19 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Montserrat, Poppins } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-poppins",
+})
+
+const monserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-monserrat",
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,8 +26,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className = {`${poppins.variable} ${monserrat.variable}`}>
+      <body >
+        <header>Header</header>
+        {children}
+        <footer>Footer</footer>
+      </body>
     </html>
   )
 }
