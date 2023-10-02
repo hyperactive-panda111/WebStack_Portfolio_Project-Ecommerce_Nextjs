@@ -11,7 +11,7 @@ module.exports = {
     extend: {
      fontFamily: {
       poppins: ["var(--font-poppins)", ...fontFamily.sans],
-      montserrat: ["var(--font-montserrat", ...fontFamily.sans],
+      montserrat: ["var(--font-montserrat) ", ...fontFamily.sans],
      },
      backgroundImage: {
       "primary-gradient":

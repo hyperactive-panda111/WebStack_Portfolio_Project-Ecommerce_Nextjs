@@ -3,6 +3,8 @@ import { Montserrat, Poppins } from "next/font/google";
 import { Metadata } from "next";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { Providers } from "@/redux/Providers";
+import Cart from "@/components/Cart/Cart";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -11,7 +13,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const monserrat = Montserrat({
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
@@ -29,11 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${monserrat.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${montserrat.variable}`}>
       <body>
+        <Providers>
+         <Cart />
         <Header />
         <main className="bg-primary-gradient min-h-screen">{children}</main>
         <Footer />
+        </Providers>
       </body>
     </html>
   );
