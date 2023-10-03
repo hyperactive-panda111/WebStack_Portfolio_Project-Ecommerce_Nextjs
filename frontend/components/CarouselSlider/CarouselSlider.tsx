@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
@@ -9,10 +9,15 @@ interface CarouselSliderProps {
   interval?: number;
 }
 
-const CarouselSlider: FC<CarouselSliderProps> = ({
-  images,
-  interval = 3000,
-}) => {
+const CarouselSlider: FC<CarouselSliderProps> = (props) => {
+
+  //console.log(props);
+  
+  const {
+    images,
+    interval = 3000,
+  } = props;
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const goToNextImage = () => {
@@ -55,7 +60,6 @@ const CarouselSlider: FC<CarouselSliderProps> = ({
           className={`w-full h-full object-cover ${
             index !== currentImageIndex && "hidden"
           }`}
-          loading="lazy"
         />
       ))}
 

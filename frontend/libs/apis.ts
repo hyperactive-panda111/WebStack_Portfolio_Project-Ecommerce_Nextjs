@@ -90,6 +90,7 @@ export const getRecentGames = async (): Promise<Game[]> => {
 
 export const getGame = async (slug: string): Promise<Game> => {
   const query = `*[_type == 'game' && slug.current == "${slug}"][0] {
+    _id,
     name,
     price,
     images,
