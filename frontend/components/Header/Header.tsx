@@ -77,10 +77,16 @@ const Header = () => {
               </li>
 
               <li className="flex items-center justify-center h-7">
-                <Link href="/orders" className={orders}>
+                {session?.user && (
+                  <>
+                  <Link href="/orders" className={orders}>
                   Orders
                 </Link>
                 <button onClick={ () => signOut() } className={logoutBtn}>Logout</button>
+                  </>
+                )}
+                {!session?.user && (
+                <>
                 <button onClick={toggleForm} className={signupBtn}>
                   Sign Up
                 </button>
@@ -97,6 +103,7 @@ const Header = () => {
                     className={link}
                   />
                 </button>
+                </>)}
               </li>
             </ul>
           </nav>
