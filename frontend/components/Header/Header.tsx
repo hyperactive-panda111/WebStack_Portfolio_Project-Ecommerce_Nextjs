@@ -7,6 +7,8 @@ import {FcGoogle} from 'react-icons/fc';
 import { useAppDispatch } from "@/hooks/storeHook";
 import { toggleCart } from "@/redux/features/cartSlice";
 import useCartTotals from "@/hooks/useCartTotals";
+import Signup from "../Signup/Signup";
+import { useState } from "react";
 
 const Header = () => {
     const {
@@ -27,10 +29,19 @@ const Header = () => {
     } = headerClassNames;
 
     const {totalQuantity} = useCartTotals();
+    const [isSignUpFormOpen, setIsSignupFormOpen] = useState(false);
 
     const dispatch = useAppDispatch();
+
+    const toggleForm = () => {
+        setIsSignupFormOpen(!isSignUpFormOpen);
+    };
     
     return (
+        <>
+        <Signup isSignUpFormOpen
+         toggleForm={toggleForm}
+         />
         <header className={header}>
             <div className={container}>
                 <Link href='/' className={logoContainer}>
@@ -54,7 +65,11 @@ const Header = () => {
                                 Orders
                             </Link>
                             <button className={logoutBtn}>Logout</button>
-                            <button className={signupBtn}>Sign Up</button>
+                            <button 
+                            onClick={toggleForm}
+                            className={signupBtn}>
+                                Sign Up
+                            </button>
                             <button className={signinBtn}>
                                 Sign In
                                 <FcGoogle
@@ -74,6 +89,8 @@ const Header = () => {
                 </nav>
                 </div>
                 </header>
+        </>
+        
     );
 };
 
