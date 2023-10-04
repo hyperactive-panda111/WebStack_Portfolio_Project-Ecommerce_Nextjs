@@ -20,7 +20,7 @@ export async function POST(req: Request, res: Response) {
 
         const hashedPassword = await bcrypt.hash(password, 12);
         const result = await db.collection('users').insertOne({ email, hashedPassword });
-
+ 
         await client.close();
         
         return NextResponse.json({status: 200,
