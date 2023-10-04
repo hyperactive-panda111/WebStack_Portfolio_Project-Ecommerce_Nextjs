@@ -9,7 +9,7 @@ import { toggleCart } from "@/redux/features/cartSlice";
 import useCartTotals from "@/hooks/useCartTotals";
 import Signup from "../Signup/Signup";
 import { useState } from "react";
-import { signIn } from 'next-auth/react';
+import { signIn, useSession, signOut } from 'next-auth/react';
 
 const Header = () => {
   const {
@@ -32,6 +32,11 @@ const Header = () => {
   const { totalQuantity } = useCartTotals();
   const [isSignUpFormOpen, setIsSignupFormOpen] = useState(false);
 
+  const { status, data: session} = useSession({required: true, onUnauthenticated() {
+
+  }});
+
+  console.log(status, session);
   const dispatch = useAppDispatch();
 
   const toggleForm = () => {
@@ -75,7 +80,7 @@ const Header = () => {
                 <Link href="/orders" className={orders}>
                   Orders
                 </Link>
-                <button className={logoutBtn}>Logout</button>
+                <button onClick={ () => signOut() } className={logoutBtn}>Logout</button>
                 <button onClick={toggleForm} className={signupBtn}>
                   Sign Up
                 </button>
