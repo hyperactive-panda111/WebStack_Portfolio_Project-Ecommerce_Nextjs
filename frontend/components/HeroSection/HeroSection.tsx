@@ -3,7 +3,7 @@ import heroClassNames from "./heroClassNames";
 import Link from "next/link";
 import Image from 'next/image';
 
-const HeroSection: FC<{ showLink?: boolean}>= (props) => {
+const HeroSection: FC<{ showLink?: boolean}> = (props) => {
     const { showLink } = props;
 
     return (

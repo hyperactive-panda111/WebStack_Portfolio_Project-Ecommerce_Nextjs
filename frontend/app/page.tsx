@@ -20,7 +20,7 @@ export default async function Home() {
 
   return (
     <>
-      <HeroSection />
+      <HeroSection showLink/>
 
       <section className={sectionClassNames.section}>
         <div className={sectionClassNames.trending}>
