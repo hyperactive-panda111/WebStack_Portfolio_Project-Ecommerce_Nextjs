@@ -15,7 +15,7 @@ const GameCard: FC<GameCardProps> = (props) => {
   const { gameName, imageUrl, slug, price } = props;
 
   return (
-    <Link href={`/games/${slug}`} className={gameCardClassNames.container}>
+    <Link key={slug} href={`/games/${slug}`} className={gameCardClassNames.container}>
       <h3 className={gameCardClassNames.price}>{price} $</h3>
 
       <Image
