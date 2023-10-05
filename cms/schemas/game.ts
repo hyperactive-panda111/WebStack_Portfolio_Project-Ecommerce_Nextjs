@@ -1,5 +1,5 @@
 //Game Schema
-//Category Schema
+
 
 export default {
     name : 'game',

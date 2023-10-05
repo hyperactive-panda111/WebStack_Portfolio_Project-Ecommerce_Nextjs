@@ -1,4 +1,4 @@
-import { updateGameQuantity } from "@/libs/apis";
+import { createOrder, updateGameQuantity } from "@/libs/apis";
 import sanityClient from "@/libs/sanity";
 import { Game, GameSubset } from "@/models/games";
 import { NextResponse } from "next/server";
@@ -36,11 +36,20 @@ export async function POST(req: Request, res: Response) {
       payment_method_types: ['card'],
       billing_address_collection: 'required',
       mode: 'payment',
-      success_url: `${origin}/?success=true`
+      success_url: `${origin}/?success=true`,
+      phone_number_collection: { enabled: true }
+      
+
     });
 
-    const result = await updateGameQuantity(updatedItems);
-    console.log(result);
+    await updateGameQuantity(updatedItems);
+    
+    await createOrder(updatedItems, {
+      phoneNumber: session.customer_details?.phone as string,
+      shippingAddress: session.customer_details?.address?.city as string,
+      totalPrice: session.amount_total as number,
+      userEmail: session.customer_details?.email as string,
+    });
 
     return NextResponse.json(session, { status: 200, statusText: 'payment successful' });
 
