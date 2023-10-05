@@ -1,3 +1,4 @@
+import { updateGameQuantity } from "@/libs/apis";
 import sanityClient from "@/libs/sanity";
 import { Game, GameSubset } from "@/models/games";
 import { NextResponse } from "next/server";
@@ -37,6 +38,9 @@ export async function POST(req: Request, res: Response) {
       mode: 'payment',
       success_url: `${origin}/?success=true`
     });
+
+    const result = await updateGameQuantity(updatedItems);
+    console.log(result);
 
     return NextResponse.json(session, { status: 200, statusText: 'payment successful' });
 
