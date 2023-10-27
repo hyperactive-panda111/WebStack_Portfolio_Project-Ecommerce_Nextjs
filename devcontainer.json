@@ -1,0 +1,8 @@
+{
+  "name": "My Dev Container",
+  "version": "1.0.0",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": ["npm", "run", "dev"]
+}
